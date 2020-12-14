@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 
-//import AppRoutes from "./app.routes";
+import { useAuth } from '../contexts/auth';
+import AppRoutes from "./app.routes";
 import AuthRoutes from "./auth.routes";
 
 const Routes: React.FC = () => {
-  return(
-    <AuthRoutes />
-  );
+  const { signed, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <span>carregando...</span>
+    );
+  }
+
+  return signed ? <AppRoutes /> : <AuthRoutes />
+
 };
 
 export default Routes;

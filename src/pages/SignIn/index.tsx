@@ -1,10 +1,12 @@
-import React from 'react';
-import { signIn } from '../../service/auth';
+import React, { useContext } from 'react';
+import { useAuth } from '../../contexts/auth';
+
 
 const SignIn: React.FC = () => {
-  async function handleSignIn() {
-    const response = await signIn();
-    console.log(response);
+  const { signIn } = useAuth();
+
+  function handleSignIn() {
+    signIn();
   }
 
   return (
